@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FACE++</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<style type="text/css">
+		.loading {
+			display: inherit;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div>
+		<input type="text" id="inputImgUrl">
+		<button id="submitImgUrl">Run</button>
+		<iframe src="https://giphy.com/embed/6gWNMuQjEVSfK" display="none" width="64" height="64" frameBorder="0" class="giphy-embed modal"></iframe>
+	</div>
+
+	<div id="resultsDiv"></div>
+	<div id="barchart_values"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$('#submitImgUrl').on('click',function(){
+		console.time('timer');
+		if ($('#inputImgUrl').val().trim()===''){
+			var errorMessage = $('<h3>');
+			$(errorMessage).text('Please input a valid image URL');
+			$(errorMessage).attr('class','inputError');
+			$('#resultsDiv').append(errorMessage);
+			return;
+		}
+
+		else 
+		$('.modal').addClass("loading");
+		$('.inputError').text('');
+		var userUrl = $('#inputImgUrl').val().trim();
+		var choiceKey = "a5gkHawN_9QRfm3-xbiEukr6RH0quaTi";
+		var choiceSecret = "T6m_6i7TTZZU0t8Ldq9-RnMDYGd64k9B";
+		var settings = {
+  	"async": true,
+  	"crossDomain": true,
+  	"url": "https://api-us.faceplusplus.com/facepp/v3/detect?api_key="+choiceKey+"&api_secret="+choiceSecret+"&image_url="+userUrl,
+  	"method": "POST",
+  	"headers": {
+    	"cache-control": "no-cache",
+    	"postman-token": "ac5f8f56-a5e6-e22a-1f75-1075438b0e45"
+  	}
+		}
+
+	$.ajax(settings).done(function (response) {
+        console.log(response);
+        var faceToken = response.data.faces.face_token
+        var queryURL = "https://api-us.faceplusplus.com/facepp/v3/face/analyze?api_key="+choiceKey+
+        "&api_secret="+choiceSecret+"&face_tokens="+faceToken+
+        "&return_attributes=gender,age,ethnicity,emotion,eyestatus";
+		$.ajax({
+			url: queryURL,
+			method: "GET"
+		}).done(function(response){
+    			console.log('response');
+		});
+    });
+        
+	});
+});
+
+</script>
+</body>
+</html>
