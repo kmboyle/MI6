@@ -7,4 +7,7 @@ module.exports = function(app) {
   app.get("/facePlusPlus", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/facePlusPlus.html"));
   });
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
 };

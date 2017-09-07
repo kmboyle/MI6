@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SkyBio</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<style type="text/css">
+		.loading {
+			display: inherit;
+		}
+	</style>
+</head>
+<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script>
+    var client = filestack.init('AJxBDjHDtSzGQPwozMvAfz');
+    function showPicker() {
+        client.pick({
+        }).then(function(result) {
+            console.log(JSON.stringify(result.filesUploaded))
+        });
+    }
+</script>
+<input type="button" value="Upload" onclick="showPicker()" />
+<body>
+</body>
+</html>
+
+<!--https://dev.filestack.com/welcome/?new_user=True&apikey=AJxBDjHDtSzGQPwozMvAfz-!>
