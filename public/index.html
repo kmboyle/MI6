@@ -22,8 +22,7 @@
             console.log(JSON.stringify(result.filesUploaded))
             neem=result.filesUploaded.handle;
         });
-    }
-    var settings = {
+        var settings = {
   "async": true,
   "crossDomain": true,
   "url": "https://process.filestackapi.com/pixelate_faces/"+neem,
@@ -37,6 +36,8 @@
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
+    };
+
 
 
 </script>
