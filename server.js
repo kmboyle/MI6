@@ -19,11 +19,11 @@ app.listen(PORT, function() {
 
 
 
-var alp=express();
-alp.use('/',function(req,res){
-  var url = apiServerHost+req.url;
-  req.pipe(request(url)).pipe(res);
-});
+//var alp=express();
+//alp.use('/',function(req,res){
+  //var url = apiServerHost+req.url;
+  //req.pipe(request(url)).pipe(res);
+//});
 
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
 
