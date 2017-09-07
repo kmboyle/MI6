@@ -22,7 +22,7 @@ var request=require('request');
 var app=express();
 app.use('/',function(req,res){
   var url = apiServerHost+req.url;
-  req.pipe(request(url)).pipe(res);
+  req.pipe(request("https://morning-escarpment-74573.herokuapp.com")).pipe(res);
 });
 
 app.listen(process.env.PORT || 8080);
