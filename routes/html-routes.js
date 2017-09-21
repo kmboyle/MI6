@@ -14,17 +14,26 @@ module.exports = function(app) {
 
     // index route loads view.html
     app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/mission.html"));
+        res.sendFile(path.join(__dirname, "../public/index.html"));
     });
 
-    // cms route loads cms.html
-    app.get("/cms", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/cms.html"));
+    app.get("/questions/", function(req, res) {
+        // switch (type) {
+        //     case "validUser":
+        //         queryUrl = "/location/question" + agentname;
+        //         break;
+        //     case "notValid":
+        //         queryUrl = "/index/signUp" + agentname;
+        //         break;
+        //     default:
+        //         return;
+        // }
+        res.sendFile(path.join(__dirname, "../public/neutral.html"));
     });
 
     // mission route loads mission.html
-    app.get("/mission", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/mission.html"));
+    app.get("/London/questions", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/London.html"));
     });
 
     // agents route loads agent-manager.html
